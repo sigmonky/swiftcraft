@@ -46,3 +46,32 @@ loginVC.showUser()
 XCTAssertTrue(loginVC.user == nil, "user value still set")
 
 
+struct Person: CustomStringConvertible {
+     let name: String
+     
+     var description: String {
+        print("description request")
+         return "Person name is \(name)"
+     }
+ }
+
+ let isDebuggingEnabled: Bool = true
+
+//func debugLog(_ message: String) {
+//     /// You could replace this in projects with #if DEBUG
+//     if isDebuggingEnabled {
+//         print("[DEBUG] \(message)")
+//     }
+// }
+//
+// let person = Person(name: "Bernie")
+//debugLog(person.description)
+func debugLog(_ message: @autoclosure () -> String) {
+     /// You could replace this in projects with #if DEBUG
+     if isDebuggingEnabled {
+         print("[DEBUG] \(message())")
+     }
+ }
+
+let person: Person? = nil
+debugLog(person?.description ?? "none")
